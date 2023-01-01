@@ -72,23 +72,8 @@ def score(dice):
             int += 1
     # sum the leftovers
     return result
-    """if dice == []:
-        return 0
-    elif dice == [5]:
-        return 50
-    elif dice == [1]:
-        return 100
-    else:
-        x = 0
-        result = 0
-        while x < len(dice):
-            if dice[x] == 1:
-                result =+ 100
-            elif dice [x] == 5:
-                result =+ 50
-            x =+ 1
-        return result"""
 
+# TO DO: REWRITE THIS EXERCISE USING DICTIONARIES
 
 
 class AboutScoringProject(Koan):
