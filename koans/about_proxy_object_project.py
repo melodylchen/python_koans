@@ -22,14 +22,15 @@ class Proxy:
     def __init__(self, target_object):
         # WRITE CODE HERE
         self._messages = []
-
+        
         #initialize '_obj' attribute last. Trust me on this!
         self._obj = target_object
 
-        # WRITE CODE HERE
 
-    def __getattribute__(self, attribute):
-        return self._obj.__getattribute__(attribute)
+    def __getattr__(self, attr_name):
+     #   return super(self._obj).__getattribute__(attr_name)
+     pass
+           
 
     def __setattr__(self, attribute, value):
         return super().__setattr__
