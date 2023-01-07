@@ -28,12 +28,49 @@ class Proxy:
 
 
     def __getattr__(self, attr_name):
-     #   return super(self._obj).__getattribute__(attr_name)
-     pass
-           
+        # Handles functions that are not in the Proxy class
 
-    def __setattr__(self, attribute, value):
-        return super().__setattr__
+        attr = getattr(self._obj, attr_name) #performs functions for the Parent class functions
+        self._messages.append(attr_name) #appends parent function name to messages
+        return attr  
+
+        """
+
+        Greg Malcolm's Solution: https://github.com/gregmalcolm/python_koans/blob/answers/python3/koans/about_proxy_object_project.py
+
+
+        Also refer to: https://stackoverflow.com/questions/8554453/python-koans-class-proxy
+        """       
+
+    def __setattr__(self, attr_name, value):
+        #returns the ability to set attributes if not in the parent class
+
+        if "_" == attr_name[0]: #Performs set functions  for the Proxy class
+            return object.__setattr__(self, attr_name, value)
+        
+    
+        setattr(self._obj, attr_name, value) #Performs set functions for the Parent Class
+
+
+        self._messages.append(attr_name) #Appends the function name to the messages
+
+        """
+        Greg Malcolm's Solution: https://github.com/gregmalcolm/python_koans/blob/answers/python3/koans/about_proxy_object_project.py
+
+        
+        """
+
+    def messages(self):
+        return self._messages
+
+    def was_called(self, fn_name):
+        if fn_name in self._messages:
+            return True
+        else:
+            return False
+    
+    def number_of_times_called(self, fn_name):
+        return self._messages.count(fn_name)
         
 
    

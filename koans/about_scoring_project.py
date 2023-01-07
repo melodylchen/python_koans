@@ -34,6 +34,7 @@ from runner.koan import *
 
 def score(dice):
     result = 0
+    #TODO: Refactor using sets and adding to the values associated with the keys
     count_array = [0,0,0,0,0,0]
     int = 0
 
@@ -51,6 +52,7 @@ def score(dice):
         elif roll == 6:
             count_array[5] += 1
     # handle empty 
+    #TODO: Simplify this later
     if dice == []:
         result = 0
     else:
